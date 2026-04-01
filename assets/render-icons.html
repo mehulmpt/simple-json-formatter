@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { margin: 0; background: transparent; }
+  canvas { display: block; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+const size = parseInt(new URLSearchParams(location.search).get('size') || '128');
+const c = document.getElementById('c');
+c.width = size;
+c.height = size;
+const ctx = c.getContext('2d');
+
+const r = size / 128; // scale factor
+
+// Rounded rect background with gradient
+const grad = ctx.createLinearGradient(0, 0, size, size);
+grad.addColorStop(0, '#1e1e1e');
+grad.addColorStop(1, '#2d2d2d');
+roundRect(ctx, 0, 0, size, size, 24 * r);
+ctx.fillStyle = grad;
+ctx.fill();
+
+// Braces
+ctx.fillStyle = '#9cdcfe';
+ctx.textBaseline = 'middle';
+ctx.textAlign = 'center';
+const braceSize = Math.round(68 * r);
+ctx.font = `bold ${braceSize}px "SF Mono", Menlo, Consolas, monospace`;
+ctx.fillText('{', 36 * r, 66 * r);
+ctx.fillText('}', 92 * r, 66 * r);
+
+// Colored dots
+const dots = [
+  { y: 44, color: '#ce9178' },
+  { y: 64, color: '#b5cea8' },
+  { y: 84, color: '#569cd6' },
+];
+dots.forEach(d => {
+  ctx.beginPath();
+  ctx.arc(64 * r, d.y * r, 5.5 * r, 0, Math.PI * 2);
+  ctx.fillStyle = d.color;
+  ctx.fill();
+});
+
+function roundRect(ctx, x, y, w, h, radius) {
+  ctx.beginPath();
+  ctx.moveTo(x + radius, y);
+  ctx.lineTo(x + w - radius, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + radius);
+  ctx.lineTo(x + w, y + h - radius);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - radius, y + h);
+  ctx.lineTo(x + radius, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - radius);
+  ctx.lineTo(x, y + radius);
+  ctx.quadraticCurveTo(x, y, x + radius, y);
+  ctx.closePath();
+}
+
+// Signal ready
+document.title = 'ready';
+</script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+/*
+ * Simple JSON Formatter — Styles
+ *
+ * Uses CSS custom properties so light/dark themes are a single
+ * @media query swap. All classes prefixed with "sjf-" to avoid collisions.
+ */
+
+/* ── Theme tokens ──────────────────────────────────────────────────────── */
+
+.sjf-body {
+  --sjf-bg: #ffffff;
+  --sjf-text: #1e1e1e;
+  --sjf-toolbar-bg: #f3f3f3;
+  --sjf-toolbar-border: #d4d4d4;
+  --sjf-title-color: #1e1e1e;
+  --sjf-btn-border: #c4c4c4;
+  --sjf-btn-color: #005fb8;
+  --sjf-btn-hover-bg: #e8e8e8;
+  --sjf-size-color: #6e6e6e;
+  --sjf-copy-icon-color: #aaa;
+  --sjf-copy-icon-hover: #005fb8;
+  --sjf-copy-done: #22863a;
+  --sjf-toggle-color: #aaa;
+  --sjf-toggle-hover: #1e1e1e;
+  --sjf-key: #0451a5;
+  --sjf-string: #a31515;
+  --sjf-number: #098658;
+  --sjf-boolean: #0000ff;
+  --sjf-null: #0000ff;
+  --sjf-bracket: #1e1e1e;
+  --sjf-colon: #1e1e1e;
+  --sjf-comma: #1e1e1e;
+  --sjf-ellipsis: #6e6e6e;
+  --sjf-count: #22863a;
+  --sjf-link: #005fb8;
+}
+
+@media (prefers-color-scheme: dark) {
+  .sjf-body {
+    --sjf-bg: #1e1e1e;
+    --sjf-text: #d4d4d4;
+    --sjf-toolbar-bg: #2d2d2d;
+    --sjf-toolbar-border: #404040;
+    --sjf-title-color: #e0e0e0;
+    --sjf-btn-border: #404040;
+    --sjf-btn-color: #9cdcfe;
+    --sjf-btn-hover-bg: #3a3a3a;
+    --sjf-size-color: #888;
+    --sjf-copy-icon-color: #555;
+    --sjf-copy-icon-hover: #9cdcfe;
+    --sjf-copy-done: #6a9955;
+    --sjf-toggle-color: #888;
+    --sjf-toggle-hover: #d4d4d4;
+    --sjf-key: #9cdcfe;
+    --sjf-string: #ce9178;
+    --sjf-number: #b5cea8;
+    --sjf-boolean: #569cd6;
+    --sjf-null: #569cd6;
+    --sjf-bracket: #d4d4d4;
+    --sjf-colon: #d4d4d4;
+    --sjf-comma: #d4d4d4;
+    --sjf-ellipsis: #888;
+    --sjf-count: #6a9955;
+    --sjf-link: #4fc1ff;
+  }
+}
+
+/* ── Page reset ────────────────────────────────────────────────────────── */
+
+.sjf-body {
+  margin: 0;
+  padding: 0;
+  background: var(--sjf-bg);
+  color: var(--sjf-text);
+  font-family: "SF Mono", "Fira Code", "Cascadia Code", Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ── Toolbar ───────────────────────────────────────────────────────────── */
+
+.sjf-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: var(--sjf-toolbar-bg);
+  border-bottom: 1px solid var(--sjf-toolbar-border);
+}
+
+.sjf-title {
+  font-weight: 600;
+  color: var(--sjf-title-color);
+}
+
+.sjf-btn {
+  background: none;
+  border: 1px solid var(--sjf-btn-border);
+  color: var(--sjf-btn-color);
+  font-family: inherit;
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: normal;
+  display: inline-block;
+}
+
+.sjf-btn:hover {
+  background: var(--sjf-btn-hover-bg);
+}
+
+.sjf-size {
+  color: var(--sjf-size-color);
+  font-size: 12px;
+  margin-right: auto;
+}
+
+/* ── JSON content area ─────────────────────────────────────────────────── */
+
+.sjf-container {
+  padding: 16px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.sjf-indent {
+  padding-left: 20px;
+}
+
+.sjf-line {
+  min-height: 1.5em;
+  position: relative;
+}
+
+/* ── Per-line copy icon (visible on hover) ─────────────────────────────── */
+
+.sjf-copy-icon {
+  display: inline-block;
+  width: 16px;
+  text-align: center;
+  cursor: pointer;
+  color: var(--sjf-copy-icon-color);
+  font-size: 13px;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+  vertical-align: middle;
+  margin-right: 2px;
+}
+
+.sjf-line:hover > .sjf-copy-icon {
+  opacity: 1;
+}
+
+.sjf-copy-icon:hover {
+  color: var(--sjf-copy-icon-hover);
+}
+
+.sjf-copy-icon-done {
+  color: var(--sjf-copy-done) !important;
+  opacity: 1 !important;
+}
+
+/* ── Collapse / expand toggle ──────────────────────────────────────────── */
+
+.sjf-toggle {
+  display: inline-block;
+  width: 14px;
+  cursor: pointer;
+  user-select: none;
+  color: var(--sjf-toggle-color);
+  text-align: center;
+}
+
+.sjf-toggle:hover {
+  color: var(--sjf-toggle-hover);
+}
+
+/* ── Syntax colors ─────────────────────────────────────────────────────── */
+
+.sjf-key       { color: var(--sjf-key); }
+.sjf-string    { color: var(--sjf-string); }
+.sjf-number    { color: var(--sjf-number); }
+.sjf-boolean   { color: var(--sjf-boolean); }
+.sjf-null      { color: var(--sjf-null); }
+.sjf-bracket   { color: var(--sjf-bracket); }
+.sjf-colon     { color: var(--sjf-colon); }
+.sjf-comma     { color: var(--sjf-comma); }
+.sjf-ellipsis  { color: var(--sjf-ellipsis); }
+.sjf-count     { color: var(--sjf-count); font-style: italic; margin-left: 8px; }
+.sjf-link      { color: var(--sjf-link); text-decoration: none; }
+.sjf-link:hover { text-decoration: underline; }

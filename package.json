@@ -1,0 +1,33 @@
+{
+	"name": "simple-json-formatter",
+	"version": "1.0.0",
+	"type": "module",
+	"description": "A dead-simple Chrome extension that formats JSON documents",
+	"scripts": {
+		"build": "tsx build.ts",
+		"build:extension": "tsx build.ts && cd out && zip -r ../simple-json-formatter.zip . && echo 'Packaged → simple-json-formatter.zip'",
+		"dev": "tsx build.ts --watch",
+		"generate:icons": "tsx assets/generate-icons.ts",
+		"lint": "eslint src/",
+		"typecheck": "tsc --noEmit",
+		"format": "prettier --write 'src/**/*.ts' '*.json' '*.js'",
+		"format:check": "prettier --check 'src/**/*.ts' '*.json' '*.js'"
+	},
+	"author": "Mehul Mohan <mehulmpt@gmail.com> (https://github.com/mehulmpt)",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mehulmpt/simple-json-formatter"
+	},
+	"license": "MIT",
+	"devDependencies": {
+		"@eslint/js": "10.0.1",
+		"@types/chrome": "0.1.38",
+		"@types/node": "25.5.0",
+		"esbuild": "0.27.4",
+		"eslint": "10.1.0",
+		"prettier": "3.8.1",
+		"tsx": "4.21.0",
+		"typescript": "6.0.2",
+		"typescript-eslint": "8.58.0"
+	}
+}

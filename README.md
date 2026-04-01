@@ -15,6 +15,10 @@ A lightweight Chrome extension that automatically formats JSON documents with sy
 
 ## Install
 
+**[Install from Chrome Web Store](https://chromewebstore.google.com/detail/glpiippmmmcehcakihlcckekenppambg)**
+
+Or build from source:
+
 1. Clone this repo
 2. Install dependencies and build:
    ```sh

@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Simple JSON Formatter",
   "version": "1.0",
-  "description": "Formats JSON documents in the browser. Add #raw to URL to see raw JSON.",
+  "description": "Auto-formats JSON pages with syntax highlighting, collapsible trees, and per-field copy. Supports light/dark mode.",
   "author": "Mehul Mohan <mehulmpt@gmail.com>",
   "homepage_url": "https://github.com/mehulmpt/simple-json-formatter",
   "icons": {
